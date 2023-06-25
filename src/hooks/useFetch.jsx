@@ -14,9 +14,8 @@ export default function useFetch( uri, method, dataToSend, token){
                     'Content-Type': 'application/json',
                     'access-token':token
                 },
-                body:JSON.stringify(dataToSend)
+                body:dataToSend&&JSON.stringify(dataToSend)
             })
-
             if(!response.ok){
                 const message = await response.json()
                 setError(message.message)
@@ -27,7 +26,6 @@ export default function useFetch( uri, method, dataToSend, token){
             setData(jsonResponse)
             setError()
             setLoading(false)
-
         } catch (error) {
             setError(error)
         }

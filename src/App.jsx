@@ -11,6 +11,7 @@ function App() {
         <Routes>
           <Route  path='/login' caseSensitive element={<Login />}></Route>
           <Route path="/" element={<Home />} caseSensitive />
+          <Route path="/:nit" element={<Home />} caseSensitive />
         </Routes>
       </Router>
     </Layout>

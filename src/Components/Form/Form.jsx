@@ -2,6 +2,7 @@ import { useRef, useState, useContext } from "react"
 import { ContextAuth } from "../Context/ContextAuth"
 import Types from "../Provider/Types"
 import { checkGeneralData } from './utils/checkData'
+import { useNavigate } from "react-router-dom"
 
 export default function Form(){
     const emailRef = useRef(null)
@@ -10,6 +11,7 @@ export default function Form(){
     const { dispatch } = useContext(ContextAuth)
 
     const [ errorForm, setErrorForm ] = useState()
+    const navigate = useNavigate()
     const handlerSubmit = async(e) =>{
         e.preventDefault()
         const email = emailRef.current.value
@@ -41,8 +43,9 @@ export default function Form(){
                 type:Types.ADD_DATA_AUTH,
                 payload:dataResponse
             })
+            navigate('/')
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     }
 
