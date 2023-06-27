@@ -30,7 +30,7 @@ export default function Products({data, nit, setNewUpdate, newUpdate, stateAuth}
                     stateAuth.statusAdmin&&
                     <div className='flex flex-col items-center justify-center'>
                     <ButtonInventory token={stateAuth.token} setNewUpdate={setNewUpdate} newUpdate={newUpdate} method={'PUT'} imgSource={editButton} width={25} data={toUpdateData} title={`Modify item ${data.productName}`} />
-                    <DeleteButton token={stateAuth.token} setNewUpdate={setNewUpdate} newUpdate={newUpdate} width={30} data={toUpdateData} uri={'https://imagineapp-prueba.netlify.app/.netlify/functions/app/company/products'}/>
+                    <DeleteButton redirect={false} token={stateAuth.token} setNewUpdate={setNewUpdate} newUpdate={newUpdate} width={30} data={toUpdateData} uri={'https://imagineapp-prueba.netlify.app/.netlify/functions/app/company/products'}/>
                     </div>
                     }
                     

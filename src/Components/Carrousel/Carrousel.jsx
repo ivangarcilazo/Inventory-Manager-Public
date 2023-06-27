@@ -59,7 +59,7 @@ export default function Carrousel(){
           };
     }, [item])
     return(
-        <div className='flex flex-col gap-5 justify-center items-center w-5/6 overflow-hidden mx-auto'>
+        <div className='flex flex-col gap-5 justify-center items-center overflow-hidden mx-auto'>
             
             <div className='flex justify-center items-center gap-10'>
                 <img className='z-10 cursor-pointer hover:scale-125 duration-100' onClick={()=>handlerChangeView('left')} src={left} width={50}/>

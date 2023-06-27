@@ -54,7 +54,9 @@ export default function ActionCompanies({data, imageSource, method, modalTitle, 
             setOpen(false)
             setNewUpdate(!newUpdate)
         } catch (error) {
-            console.log(error)
+            setError({
+                message:'An unexpected error occurred'
+            })
         }
     }
     let dataCompany=[

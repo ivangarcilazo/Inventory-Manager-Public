@@ -4,7 +4,7 @@ import Modal from "../../../../Components/Modal/Modal"
 import deleteButton from '../../../../assets/deleteButton.svg'
 import { useNavigate } from "react-router-dom"
 
-export default function DeleteButton ({data, uri, width, setNewUpdate, newUpdate, token}){
+export default function DeleteButton ({data, uri, width, setNewUpdate, newUpdate, token, redirect}){
     const [ isOpened, setIsOpened ] = useState(false)
     const [ error, setError ] = useState()
     const navigate = useNavigate()
@@ -29,10 +29,9 @@ export default function DeleteButton ({data, uri, width, setNewUpdate, newUpdate
             }
             setNewUpdate(!newUpdate)
             setIsOpened(false)
-            const resJson = await response.json()
-            if(resJson.message==='product') return
-            navigate('/')
+            redirect&&navigate('/')
         } catch (error) {
+            setNewUpdate(!newUpdate)
             console.error(error)
         }
     }

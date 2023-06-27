@@ -12,13 +12,12 @@ export default function ButtonInventory({imgSource, width, title, data, method, 
     const quantityProductRef = useRef(null)
     const priceProductRef = useRef(null)
     const descriptionProductRef = useRef(null)
-    const imageProductRef = useRef(null)    
+   
     const handlerSubmit = async() => {
         const name=nameProductRef.current.value
         const quantity=quantityProductRef.current.value
         const price=priceProductRef.current.value
         const description=descriptionProductRef.current.value
-        const image=imageProductRef.current.value
 
         if(name===''|| quantity==='' || price===''||description===''){
             setError({
@@ -33,16 +32,18 @@ export default function ButtonInventory({imgSource, width, title, data, method, 
             return
         }
 
+
         const dataToSend = {
             name:name,
             quantity:quantity,
             price:price,
             description:description,
-            image:image||'NO_IMAGE',
+            image:'NO_IMAGE',
             nit:data.NIT,
             idProduct:data._id||null
         }
         setStatusRequest(true)
+      
         try {
             const response = await fetch(`https://imagineapp-prueba.netlify.app/.netlify/functions/app/company/products`, {
                 method:method,
@@ -95,11 +96,6 @@ export default function ButtonInventory({imgSource, width, title, data, method, 
             type:'text',
             placeholder:data?.productDescription?data.productDescription:'Add description here...',
         },
-        {
-            label:'Imagen product: ',
-            ref:imageProductRef,
-            loadFile:true
-        }
     ]
     
     return(
@@ -115,8 +111,7 @@ export default function ButtonInventory({imgSource, width, title, data, method, 
                                 <div key={index}  className="flex flex-col">
                                     <label htmlFor="">{data.label}</label>
                                     {data?.textarea&&<textarea ref={data.ref} style={{border:'#ffa357 .5px solid'}} className="rounded p-1 focus:outline-none"  />}
-                                    {data?.loadFile&&<input type="file" ref={data.ref}/>}
-                                    {(!data?.textarea&&!data?.loadFile)&&(
+                                    {(!data?.textarea)&&(
                                         <input ref={data.ref} style={{borderBottom:'#ffa357 1px solid'}} className="rounded pl-1 pr-1 focus:outline-none" type={data.type} placeholder={data.placeholder} />
                                     )}
                                 </div>

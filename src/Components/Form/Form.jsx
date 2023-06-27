@@ -11,6 +11,7 @@ export default function Form(){
     const { dispatch } = useContext(ContextAuth)
 
     const [ errorForm, setErrorForm ] = useState()
+    const [ request, setRequest ] = useState(false)
     const navigate = useNavigate()
     const handlerSubmit = async(e) =>{
         e.preventDefault()
@@ -24,6 +25,7 @@ export default function Form(){
             password:password
         })
 
+        setRequest(true)
         try {
             const response = await fetch('https://imagineapp-prueba.netlify.app/.netlify/functions/app/users/login',{
                 method:'POST',
@@ -51,7 +53,10 @@ export default function Form(){
             navigate('/')
             
         } catch (error) {
-            alert(error)
+            setRequest(false)
+            setErrorForm({
+                message:"An unexpected error occurred, try again."
+            })
         }
     }
 
@@ -68,7 +73,7 @@ export default function Form(){
                             <label className="text-white" htmlFor="password">Password: </label>
                         <input ref={passwordRef} type="password" name="" id="password" className="text-black rounded focus:outline-none pl-2 pr-2 pt-1 pb-1" />
                     </div>
-                    <button className="self-center">Submit</button>
+                    <button disabled={request} className={`self-center bg-white text-orange-600 p-2 rounded ${request&&'text-red-500'}`}>{request?'Logging...':'Login'}</button>
                 </form>
                 {errorForm?<span className="font-bold text-red-600 bg-white rounded pl-1 pr-1">{errorForm.message}</span>:(<span></span>)}
             </div>

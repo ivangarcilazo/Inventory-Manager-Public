@@ -4,8 +4,9 @@ export default function useFetch( uri, method, dataToSend, token){
     const [ error, setError ] = useState(false)
     const [ loading, setLoading ] = useState(false)
     const [ data, setData ] = useState([])
-
+    
     const fetchData = async() => {
+        if(!uri||!token|| uri.includes('undefined')) return
         setLoading(true)
         try {
             const response = await fetch(`${uri}`, {
@@ -27,8 +28,7 @@ export default function useFetch( uri, method, dataToSend, token){
             setError()
             setLoading(false)
         } catch (error) {
-            // setError(error)
-            console.log(error)
+            setError(error)
         }
     }
     useEffect(()=>{

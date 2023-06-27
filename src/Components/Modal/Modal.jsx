@@ -18,7 +18,7 @@ export default function Modal(props){
     }
 
     return(
-        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-10" style={(isOpened)?{backgroundColor:'rgb(23 24 23 / 15%)', backdropFilter:'blur(2px)'}:{display:'none'}}>
+        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-20" style={(isOpened)?{backgroundColor:'rgb(23 24 23 / 15%)', backdropFilter:'blur(2px)'}:{display:'none'}}>
 
             <div className="bg-white rounded-xl p-6 shadow flex justify-around items-center flex-col " >
                 <div className="flex">

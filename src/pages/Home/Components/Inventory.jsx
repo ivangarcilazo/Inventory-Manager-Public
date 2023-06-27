@@ -37,14 +37,14 @@ export default function Inventory({stateAuth}){
             
             <div className=' flex flex-wrap justify-center items-center overflow-scroll gap-5 pt-4 h-96 lg:h-4/6 mt-2 overflow-x-hidden'>
             {
-                !data?.inventory?(
+                !data?.inventory || nit===undefined?(
                     
                     <div className='text-black text-center'>
                         {
                             nit===undefined?(
                                 <Carrousel />
                             ):(
-                                <h1 className='font-bold text-orange-500'>Loading inventory...</h1>                            )
+                                stateAuth.length===0?<h1 className='font-bold text-orange-500'>You need to Login first.</h1>    :<h1 className='font-bold text-orange-500'>Loading inventory...</h1>                            )
                         }
                     </div>
                 ):

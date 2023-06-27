@@ -47,9 +47,6 @@ const styles = StyleSheet.create({
 export default function PDFRender({ data }) {
   const [isOpened, setIsOpened] = useState(false);
 
-  const handlerSave = () =>{
-    console.log(pdf)
-  }
 
   const pdf = (
     <Document >
@@ -90,7 +87,6 @@ export default function PDFRender({ data }) {
           {pdf}
         </PDFViewer>
         </div>
-        <button onClick={handlerSave} className='text-black'>asda</button>
       </Modal>
     </>
   );
