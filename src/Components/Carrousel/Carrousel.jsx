@@ -59,7 +59,7 @@ export default function Carrousel(){
           };
     }, [item])
     return(
-        <div className='flex flex-col gap-5 justify-center items-center overflow-hidden mx-auto'>
+        <div className='flex flex-col gap-5 justify-center items-center overflow-hidden mx-auto h-full '>
             
             <div className='flex justify-center items-center gap-10'>
                 <img className='z-10 cursor-pointer hover:scale-125 duration-100' onClick={()=>handlerChangeView('left')} src={left} width={50}/>
@@ -76,7 +76,7 @@ export default function Carrousel(){
                 <img src={left} style={{transform:'rotate(180deg)'}} width={50} className='z-10 cursor-pointer hover:scale-125 duration-100' onClick={()=>handlerChangeView('right')} />
             </div>
            <ul className='flex gap-4'>
-            {dataCarrousel.map((data, index)=>{
+            {dataCarrousel.map((_,index)=>{
                 return(
                     <li key={index} className='rounded-full w-3 h-3 ' style={item===index?{backgroundColor:'orange'}:{backgroundColor:'gray'}}></li>
                 )

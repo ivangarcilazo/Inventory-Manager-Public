@@ -35,7 +35,7 @@ export default function Inventory({stateAuth}){
                 
             </div>
             
-            <div className=' flex flex-wrap justify-center items-center overflow-scroll gap-5 pt-4 h-96 lg:h-4/6 mt-2 overflow-x-hidden'>
+            <div className=' flex flex-wrap justify-center items-center gap-5 pt-4  mt-2 overflow-x-hidden'>
             {
                 !data?.inventory || nit===undefined?(
                     
@@ -49,30 +49,35 @@ export default function Inventory({stateAuth}){
                     </div>
                 ):
                 (
-                data.inventory.length===0?(
-                    <div className='text-black text-center'>
-                        <h1 className='font-bold'>{data.name} doesnt have any product yet.</h1>
-                        {
-                            stateAuth.statusAdmin?(
-                                <span>With the <b>+</b> button you can add new products.</span>
-                            ):(
-                                <span>Please, Contact an administrator to add products. </span>
-                            )
-                        }
-                    </div>
-                ):(
-                    data.inventory.map((dataOfProducts,index)=>{ 
-                        return(
-                        <Products stateAuth={stateAuth} setNewUpdate={setNewUpdate} newUpdate={newUpdate} key={index} data={dataOfProducts} nit={nit}/>
+                <div className='flex flex-wrap justify-center items-center overflow-scroll gap-5 pt-4 h-96 lg:h-4/6 lg:h-4/6 mt-2 overflow-x-hidden'>
+                    {
+                        data.inventory.length===0?(
+                            <div className='text-black text-center'>
+                                <h1 className='font-bold'>{data.name} doesnt have any product yet.</h1>
+                                {
+                                    stateAuth.statusAdmin?(
+                                        <span>With the <b>+</b> button you can add new products.</span>
+                                    ):(
+                                        <span>Please, Contact an administrator to add products. </span>
+                                    )
+                                }
+                            </div>
+                        ):(
+                            data.inventory.map((dataOfProducts,index)=>{ 
+                                return(
+                                <Products stateAuth={stateAuth} setNewUpdate={setNewUpdate} newUpdate={newUpdate} key={index} data={dataOfProducts} nit={nit}/>
+                                )
+                            })
+                        
                         )
-                    })
-                
-                )
-                )
+                    }
+
+                </div>
+                    )
             }
             </div>
             <div className='flex w-full justify-end pr-5 lg:pt-5'>
-                {data.length===0 ||  data.inventory.length===0?<span></span>:(
+                {data.length===0 ||  data.inventory.length===0 || nit===undefined?<span></span>:(
                 <PDFRender data={data.inventory} />
                 )}
             </div>
