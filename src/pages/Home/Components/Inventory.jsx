@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react'
-import addButton from '../../../assets/addButton.svg'
+import addButton from '../../../assets/AddButton.svg'
 import useFetch from '../../../hooks/useFetch'
 import ButtonInventory from './Components/ButtonInventory'
 import { useParams } from 'react-router-dom'
