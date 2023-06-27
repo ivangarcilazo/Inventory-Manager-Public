@@ -76,7 +76,7 @@ export default function PDFRender({ data }) {
   return (
     <>
       <button
-        className="z- text-slate-600 bg-orange-600 rounded p-1 text-white"
+        className="z-20 text-slate-600= bg-slate-400 rounded p-1 text-white"
         onClick={() => setIsOpened(true)}
       >
         Download as PDF
