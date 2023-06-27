@@ -12,7 +12,7 @@ export default function useFetch( uri, method, dataToSend, token){
                 method:method,
                 headers:{
                     'Content-Type': 'application/json',
-                    'access-token':token
+                    'Access-Token':token
                 },
                 body:dataToSend&&JSON.stringify(dataToSend)
             })
@@ -27,7 +27,8 @@ export default function useFetch( uri, method, dataToSend, token){
             setError()
             setLoading(false)
         } catch (error) {
-            setError(error)
+            // setError(error)
+            console.log(error)
         }
     }
     useEffect(()=>{

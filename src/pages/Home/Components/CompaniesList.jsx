@@ -6,25 +6,33 @@ import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import ActionCompanies from './Components/ActionCompanies'
 import AddButton from '../../../assets/AddButton.svg'
+import { useNavigate } from 'react-router-dom'
 
 
 export default function CompaniesList({stateAuth}){
     const [ newUpdate, setNewUpdate ] = useState(false)
-    const { data, loading, fetchData } = useFetch('http://localhost:3000/company', 'GET',null, stateAuth.token)
+    const { data, loading, fetchData, error } = useFetch('https://imagineapp-prueba.netlify.app/.netlify/functions/app/company', 'GET',null, stateAuth.token)
 
     useEffect(()=>{
         fetchData()
     }, [newUpdate])
+
+    const navigate = useNavigate()
+    if(error){
+        navigate('/login')
+    }
     
     return(
-        <div className="h-5/6 rounded-xl m-2">
+        <div className="h-5/6 w-screen lg:w-fit rounded-xl lg:m-2 shadow-xl">
             <div className="w-full rounded-t-xl h-1/6 flex items-center justify-around" style={{backgroundColor:'#ffa357'}}>
                 <span className="text-xl">Companies</span>
-                <ActionCompanies newUpdate={newUpdate} setNewUpdate={setNewUpdate} title={'Companies'} imageSource={AddButton} method={'POST'} modalTitle={'Add new company'} path={'register'} />
+                {
+                    stateAuth.statusAdmin&&<ActionCompanies token={stateAuth.token} newUpdate={newUpdate} setNewUpdate={setNewUpdate} title={'Companies'} imageSource={AddButton} method={'POST'} modalTitle={'Add new company'} path={'register'} />
+                }
             </div>
             <div className="h-5/6 border- rounded-b-xl text-slate-600 border overflow-y-scroll bg-white">
                 <table className="w-full">
-                    <thead className="sticky top-0 bg-white ">
+                    <thead className="sticky top-0 bg-white z-0">
                         <tr className="">
                         <th className="py-2 px-4 border">Name:</th>
                         <th className="py-2 px-4 border">Address:</th>
@@ -36,7 +44,12 @@ export default function CompaniesList({stateAuth}){
                     <tbody>
                         {loading ? (
                         <tr>
-                            <td colSpan="5" className="py-2 px-4 text-center">Loading</td>
+                            {!error?(
+                                <td colSpan="5" className="py-2 px-4 text-center">Loading</td>
+                            ):(
+                                <td colSpan="5" className="py-2 px-4 text-center p-1 bg-red-600 text-white">{error}</td>
+                            )
+                            }
                         </tr>
                         ) : (
                         data.map((data, index) => (
@@ -50,10 +63,10 @@ export default function CompaniesList({stateAuth}){
                             <td className="py-2 px-4 border text-sm">{data.NIT}</td>
                             <td className="py-2 px-4 border text-sm">{data.phoneNumber}</td>
                             {
-                            stateAuth.isAdmin&&
+                            stateAuth.statusAdmin&&
                             <td className="py-2 px-1 border text-sm">
-                                <EditButton token={stateAuth.token} dataCompany={data}/>
-                                <DeleteButton token={stateAuth.token} width={30} setNewUpdate={setNewUpdate} newUpdate={newUpdate}  data={data} />
+                                <EditButton token={stateAuth.token} dataCompany={data} path={'/modify'} setNewUpdate={setNewUpdate} newUpdate={newUpdate}/>
+                                <DeleteButton uri={'https://imagineapp-prueba.netlify.app/.netlify/functions/app/company'} token={stateAuth.token} width={30} setNewUpdate={setNewUpdate} newUpdate={newUpdate}  data={data} />
                             </td>
                             }
                             </tr>
@@ -62,6 +75,7 @@ export default function CompaniesList({stateAuth}){
                     </tbody>
                 </table>
             </div>
+
         </div>
     )
 }

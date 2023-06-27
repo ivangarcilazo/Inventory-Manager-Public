@@ -25,7 +25,7 @@ export default function Form(){
         })
 
         try {
-            const response = await fetch('http://localhost:3000/users/login',{
+            const response = await fetch('https://imagineapp-prueba.netlify.app/.netlify/functions/app/users/login',{
                 method:'POST',
                 headers:{
                     'Content-Type':'application/json'
@@ -43,24 +43,30 @@ export default function Form(){
                 type:Types.ADD_DATA_AUTH,
                 payload:dataResponse
             })
+            if(dataResponse==='jwt malformed'){
+                setErrorForm({
+                    message:dataResponse
+                })
+            }
             navigate('/')
+            
         } catch (error) {
-            console.error(error)
+            alert(error)
         }
     }
 
     return(
-        <div className="w-1/2 flex items-center justify-center">
-            <div className="w-96 h-96 rounded flex flex-col justify-center items-center gap-5 shadow-xl"  style={{backgroundColor:'#c45800'}}>
+        <div className="flex items-center justify-center">
+            <div className="w-80 pt-3 lg:pt-0 lg:w-96 lg:h-96 rounded flex flex-col justify-center items-center gap-5 shadow-xl"  style={{backgroundColor:'#c45800'}}>
                 <h2 className="font-semibold text-4xl text-white text-center">Welcome to <br></br> Imagine App!</h2>
                 <form action="" className="flex flex-col p-2 gap-5 items-start" onSubmit={handlerSubmit}>
                     <div className="flex flex-col items-start">
                         <label className="text-white" htmlFor="email">Email: </label>
-                        <input ref={emailRef} type="email" className="rounded focus:outline-none pl-2 pr-2 pt-1 pb-1"/>
+                        <input ref={emailRef} type="email" className="rounded focus:outline-none pl-2 pr-2 pt-1 pb-1 text-black"/>
                     </div>
                     <div className="flex flex-col items-start">
                             <label className="text-white" htmlFor="password">Password: </label>
-                        <input ref={passwordRef} type="password" name="" id="password" className="rounded focus:outline-none pl-2 pr-2 pt-1 pb-1" />
+                        <input ref={passwordRef} type="password" name="" id="password" className="text-black rounded focus:outline-none pl-2 pr-2 pt-1 pb-1" />
                     </div>
                     <button className="self-center">Submit</button>
                 </form>

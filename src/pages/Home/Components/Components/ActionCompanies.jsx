@@ -28,14 +28,15 @@ export default function ActionCompanies({data, imageSource, method, modalTitle, 
         setStatusRequest(true)
 
         const data = {
-            name:nameCompany,
+            name:nameCompany.trim(),
             address:addressCompany,
-            NIT:NITCompany,
-            phone:phoneCompany
+            NIT:NITCompany.trim(),
+            phone:phoneCompany,
+            oldNIT:dataCompany[2].value|| ''
         }
 
         try {
-            const response = await fetch(`http://localhost:3000/company/${path}`,{
+            const response = await fetch(`https://imagineapp-prueba.netlify.app/.netlify/functions/app/company/${path}`,{
                 method:`${method}`,
                 headers:{
                     'Content-Type':'application/json',

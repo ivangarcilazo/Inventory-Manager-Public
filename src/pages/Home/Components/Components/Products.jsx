@@ -15,7 +15,7 @@ export default function Products({data, nit, setNewUpdate, newUpdate, stateAuth}
     }
     return(
         <>
-            <div className="h-64 w-64 shadow-xl border rounded flex flex-col items-center justify-center text-slate-600 p-5 gap-2">
+            <div className=" lg:h-64 lg:w-64 w-44 h-64 shadow-xl border rounded flex flex-col items-center justify-center text-slate-600 p-5 gap-2">
                 {data.productImage==='NO_IMAGE'?<img className='border rounded' width={100} src={NO_IMAGE} alt="" />:<img src="" alt="" />}
                 <span>{data.productName}</span>
                 <div className='w-full flex'>
@@ -27,15 +27,16 @@ export default function Products({data, nit, setNewUpdate, newUpdate, stateAuth}
                     </button>
                     </div>
                     {
-                    stateAuth.isAdmin&&
+                    stateAuth.statusAdmin&&
                     <div className='flex flex-col items-center justify-center'>
                     <ButtonInventory token={stateAuth.token} setNewUpdate={setNewUpdate} newUpdate={newUpdate} method={'PUT'} imgSource={editButton} width={25} data={toUpdateData} title={`Modify item ${data.productName}`} />
-                    <DeleteButton token={stateAuth.token} setNewUpdate={setNewUpdate} newUpdate={newUpdate} width={30} data={toUpdateData} uri={'products'}/>
+                    <DeleteButton token={stateAuth.token} setNewUpdate={setNewUpdate} newUpdate={newUpdate} width={30} data={toUpdateData} uri={'https://imagineapp-prueba.netlify.app/.netlify/functions/app/company/products'}/>
                     </div>
                     }
                     
                 </div>
             </div>
+
             <Modal title={data.productName} isOpened={isOpened} setIsOpened={setIsOpened}>
                 {data.productImage==='NO_IMAGE'?<img className='border rounded' width={100} src={NO_IMAGE} alt="" />:<img src="" alt="" />}
                 <div className='flex flex-col text-slate-600 gap-2 justify-center items-start'>

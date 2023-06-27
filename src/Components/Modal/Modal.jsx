@@ -14,13 +14,13 @@ export default function Modal(props){
         
     const closeHandler = () =>{
         setIsOpened(false)
-        setError(false)
+        setError&&setError(false)
     }
 
     return(
-        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center" style={(isOpened)?{backgroundColor:'rgb(23 24 23 / 15%)', backdropFilter:'blur(2px)'}:{display:'none'}}>
+        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-10" style={(isOpened)?{backgroundColor:'rgb(23 24 23 / 15%)', backdropFilter:'blur(2px)'}:{display:'none'}}>
 
-            <div className="w-96 bg-white rounded-xl p-6 shadow flex justify-around items-center flex-col " >
+            <div className="bg-white rounded-xl p-6 shadow flex justify-around items-center flex-col " >
                 <div className="flex">
                     <span className="text-3xl text-slate-800">{title}</span>
                 </div>

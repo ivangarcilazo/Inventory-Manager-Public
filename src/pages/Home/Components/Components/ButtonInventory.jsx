@@ -44,7 +44,7 @@ export default function ButtonInventory({imgSource, width, title, data, method, 
         }
         setStatusRequest(true)
         try {
-            const response = await fetch(`http://localhost:3000/company/products`, {
+            const response = await fetch(`https://imagineapp-prueba.netlify.app/.netlify/functions/app/company/products`, {
                 method:method,
                 headers:{
                     'Content-Type': 'application/json',
