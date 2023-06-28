@@ -54,6 +54,12 @@ export default function Form(){
             
         } catch (error) {
             setRequest(false)
+            if(error?.message){
+                setErrorForm({
+                    message:error.message
+                })
+                return
+            }
             setErrorForm({
                 message:"An unexpected error occurred, try again."
             })
