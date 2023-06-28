@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
 import Modal from '../../../../Components/Modal/Modal';
-import { Document, Page, Text, View, StyleSheet, PDFViewer } from '@react-pdf/renderer';
+import { Document, Page, Text, View, StyleSheet, PDFViewer, PDFDownloadLink } from '@react-pdf/renderer';
 
 const styles = StyleSheet.create({
   page: {
@@ -79,13 +79,16 @@ export default function PDFRender({ data }) {
         className="z-20 text-slate-600= bg-slate-400 rounded p-1 text-white"
         onClick={() => setIsOpened(true)}
       >
-        Download as PDF
+      PDF PREVIEW
       </button>
       <Modal isOpened={isOpened} setIsOpened={setIsOpened}>
         <div className="text-slate-600">
         <PDFViewer style={{width:'90vw', height:'60vh'}}>
           {pdf}
         </PDFViewer>
+        <PDFDownloadLink document={pdf} fileName='Inventary'>
+          <button className='bg-orange-500 p-1 rounded text-white' >Download</button>
+        </PDFDownloadLink>
         </div>
       </Modal>
     </>
