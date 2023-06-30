@@ -1,3 +1,4 @@
+import React from "react"
 import { useRef, useState, useContext } from "react"
 import { ContextAuth } from "../Context/ContextAuth"
 import Types from "../Provider/Types"
@@ -36,20 +37,26 @@ export default function Form(){
             })
             if(!response.ok){
                 const message = await response.json()
-                setErrorForm(message)
+                if(message==='jwt malformed'){
+                    setErrorForm({
+                        message:message
+                    })
+                    return
+                }
+                if(message?.message){
+                    setErrorForm({
+                        message:message.message
+                    })
+                    return
+                }
                 throw new Error
             }
-
             const dataResponse = await response.json()
+
             dispatch({
                 type:Types.ADD_DATA_AUTH,
                 payload:dataResponse
             })
-            if(dataResponse==='jwt malformed'){
-                setErrorForm({
-                    message:dataResponse
-                })
-            }
             navigate('/')
             
         } catch (error) {
@@ -73,15 +80,15 @@ export default function Form(){
                 <form action="" className="flex flex-col p-2 gap-5 items-start" onSubmit={handlerSubmit}>
                     <div className="flex flex-col items-start">
                         <label className="text-white" htmlFor="email">Email: </label>
-                        <input ref={emailRef} type="email" className="rounded focus:outline-none pl-2 pr-2 pt-1 pb-1 text-black"/>
+                        <input ref={emailRef} data-testid='email' type="email" className="rounded focus:outline-none pl-2 pr-2 pt-1 pb-1 text-black"/>
                     </div>
                     <div className="flex flex-col items-start">
                             <label className="text-white" htmlFor="password">Password: </label>
-                        <input ref={passwordRef} type="password" name="" id="password" className="text-black rounded focus:outline-none pl-2 pr-2 pt-1 pb-1" />
+                        <input ref={passwordRef} data-testid='password' type="password" name="" id="password" className="text-black rounded focus:outline-none pl-2 pr-2 pt-1 pb-1" />
                     </div>
                     <button disabled={request} className={`self-center bg-white text-orange-600 p-2 rounded ${request&&'text-red-500'}`}>{request?'Logging...':'Login'}</button>
                 </form>
-                {errorForm?<span className="font-bold text-red-600 bg-white rounded pl-1 pr-1">{errorForm.message}</span>:(<span></span>)}
+                {errorForm?<span className="font-bold text-red-600 bg-white rounded pl-1 pr-1" data-testid >{errorForm.message}</span>:(<span></span>)}
             </div>
         </div>
     )
