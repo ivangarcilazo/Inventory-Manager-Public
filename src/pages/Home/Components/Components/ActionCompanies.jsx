@@ -7,7 +7,6 @@ import FormCompanies from "./FormCompanies"
 
 //It has the functionality of check data and errors 
 export default function ActionCompanies({data, imageSource, method, modalTitle, path, setNewUpdate, newUpdate, token, dataTestID}){
-
     const [ statusRequest, setStatusRequest ] = useState(false)
     const [ error, setError ] = useState(false)
     const [ open, setOpen ] = useState(false)

@@ -10,8 +10,8 @@ import AddButton from '../../../assets/AddButton.svg'
 import { useNavigate } from 'react-router-dom'
 
 
-export default function CompaniesList({stateAuth}){
-    const [ newUpdate, setNewUpdate ] = useState(false)
+export default function CompaniesList({stateAuth, newUpdate, setNewUpdate}){
+
     const { data, loading, fetchData, error } = useFetch('https://imagineapp-prueba.netlify.app/.netlify/functions/app/company', 'GET',null, stateAuth.token)
 
     useEffect(()=>{
@@ -25,7 +25,7 @@ export default function CompaniesList({stateAuth}){
     
     return(
         <div className="h-5/6 w-screen lg:w-fit rounded-xl lg:m-2 shadow-xl">
-            <div className="w-full rounded-t-xl h-1/6 flex items-center justify-around" style={{backgroundColor:'#F38704'}}>
+            <div className="w-full rounded-t-xl h-1/6 flex items-center justify-around" style={{backgroundColor:'#0e594c'}}>
                 <span className="text-xl">Companies</span>
                 {
                     stateAuth.statusAdmin&&<ActionCompanies dataTestID={'buttonAddNewCompany'} token={stateAuth.token} newUpdate={newUpdate} setNewUpdate={setNewUpdate} title={'Companies'} imageSource={AddButton} method={'POST'} modalTitle={'Add new company'} path={'register'} />

@@ -111,9 +111,9 @@ export default function ButtonInventory({imgSource, width, title, data, method, 
                             return(
                                 <div key={index}  className="flex flex-col">
                                     <label htmlFor="">{data.label}</label>
-                                    {data?.textarea&&<textarea ref={data.ref} style={{border:'#ffa357 .5px solid'}} className="rounded p-1 focus:outline-none"  />}
+                                    {data?.textarea&&<textarea ref={data.ref} style={{border:'#0e594c .5px solid'}} className="rounded p-1 focus:outline-none"  />}
                                     {(!data?.textarea)&&(
-                                        <input ref={data.ref} style={{borderBottom:'#ffa357 1px solid'}} className="rounded pl-1 pr-1 focus:outline-none" type={data.type} placeholder={data.placeholder} />
+                                        <input ref={data.ref} style={{borderBottom:'#0e594c 1px solid'}} className="rounded pl-1 pr-1 focus:outline-none" type={data.type} placeholder={data.placeholder} />
                                     )}
                                 </div>
                             )

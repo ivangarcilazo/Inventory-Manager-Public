@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     height:'50px',
     display:'grid',
     placeItems:'center',
-    borderBottom:'1px solid orange'
+    borderBottom:'1px solid #0e594c'
   },
   itemsHeader:{
     display:'flex',
@@ -45,12 +45,11 @@ const styles = StyleSheet.create({
   }
 });
 
-export default function PDFRender({ data }) {
+export default function PDFRender({ data, companyName }) {
   const [isOpened, setIsOpened] = useState(false);
 
-
   const pdf = (
-    <Document >
+    <Document title={`Inventory of ${companyName}`} >
       <Page size="A4" style={styles.page}>
       <View style={styles.table}>
           <View style={styles.tableHeader}>
@@ -77,7 +76,7 @@ export default function PDFRender({ data }) {
   return (
     <>
       <button
-        className="z-20 text-slate-600= bg-slate-400 rounded p-1 text-white"
+        className="z-20 bg-slate-400 rounded p-1 text-white"
         onClick={() => setIsOpened(true)}
       >
       PDF PREVIEW
@@ -88,7 +87,7 @@ export default function PDFRender({ data }) {
           {pdf}
         </PDFViewer>
         <PDFDownloadLink document={pdf} fileName='Inventary'>
-          <button className='bg-orange-500 p-1 rounded text-white' >Download</button>
+          <button style={{background:'#0e594c'}} className='p-1 rounded text-white' >Download</button>
         </PDFDownloadLink>
         </div>
       </Modal>

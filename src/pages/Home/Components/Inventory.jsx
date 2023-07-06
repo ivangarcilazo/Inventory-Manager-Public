@@ -9,10 +9,9 @@ import Products from './Components/Products'
 import PDFRender from './Components/PDFRender'
 import Carrousel from '../../../Components/Carrousel/Carrousel'
 
-export default function Inventory({stateAuth}){
+export default function Inventory({stateAuth, setNewUpdate, newUpdate}){
     const { nit } = useParams()
-    const [ newUpdate, setNewUpdate ] = useState(false)
-    
+        
     const { data, fetchData } = useFetch(`https://imagineapp-prueba.netlify.app/.netlify/functions/app/company/${nit}`,'GET', null, stateAuth.token)
     useEffect(()=>{
         fetchData()
@@ -45,7 +44,7 @@ export default function Inventory({stateAuth}){
                             nit===undefined?(
                                 <Carrousel />
                             ):(
-                                stateAuth.length===0?<h1 className='font-bold text-orange-500'>You need to Login first.</h1>    :<h1 className='font-bold text-orange-500'>Loading inventory...</h1>                            )
+                                stateAuth.length===0?<h1 className='font-bold text-orange-500'>You need to Login first.</h1>    :<h1 className='font-bold' style={{color:'#0e594c'}}>Loading inventory...</h1>                            )
                         }
                     </div>
                 ):
@@ -77,7 +76,7 @@ export default function Inventory({stateAuth}){
             </div>
             <div className='flex w-full justify-start lg:justify-end pt-2 lg:pt-10 lg:pr-5 '>
                 {data.length===0 ||  data.inventory.length===0 || nit === undefined?<span></span>:(
-                <PDFRender data={data.inventory} />
+                <PDFRender data={data.inventory} companyName={data.name} />
                 )}
                 
             </div>

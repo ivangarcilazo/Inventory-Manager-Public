@@ -11,6 +11,6 @@ export default function LogoutButton(){
         })
     }
     return(
-        <button className='bg-orange-500 shadow-xl p-1 rounded' onClick={handlerLogout}>LOGOUT</button>
+        <button style={{background:'#0e594c'}} className='shadow-xl p-1 rounded' onClick={handlerLogout}>LOGOUT</button>
     )
 }

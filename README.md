@@ -1,9 +1,9 @@
-# Imagine APP
+# Inventory Manager
 
 This project is a business manager and inventory of the same in order to better control expenses, organization and various other aspects of various businesses. 
 
 ## Table of contents
-- [Imagine APP](#imagine-app)
+- [Inventory Manager](#inventory-manager)
   - [Table of contents](#table-of-contents)
   - [Features](#features)
   - [Tools](#tools)

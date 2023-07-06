@@ -37,16 +37,11 @@ export default function Form(){
             })
             if(!response.ok){
                 const message = await response.json()
-                if(message==='jwt malformed'){
-                    setErrorForm({
-                        message:message
-                    })
-                    return
-                }
                 if(message?.message){
                     setErrorForm({
                         message:message.message
                     })
+                    setRequest(false)
                     return
                 }
                 throw new Error
@@ -74,9 +69,9 @@ export default function Form(){
     }
 
     return(
-        <div className="flex items-center justify-center">
-            <div className="w-80 pt-3 lg:pt-0 lg:w-96 lg:h-96 rounded flex flex-col justify-center items-center gap-5 shadow-xl"  style={{backgroundColor:'#c45800'}}>
-                <h2 className="font-semibold text-4xl text-white text-center">Welcome to <br></br> Imagine App!</h2>
+        <div className="flex items-center justify-center z-10">
+            <div className="w-80 pt-3 lg:pt-0 lg:w-96 lg:h-96 rounded flex flex-col justify-center items-center gap-5 shadow-xl"  style={{backgroundColor:'#0E594C'}}>
+                <h2 className="font text-4xl text-white text-center">Welcome to <br></br> <span className='font-bold text-2xl'>Inventory Manager!</span></h2>
                 <form action="" className="flex flex-col p-2 gap-5 items-start" onSubmit={handlerSubmit}>
                     <div className="flex flex-col items-start">
                         <label className="text-white" htmlFor="email">Email: </label>
@@ -86,7 +81,7 @@ export default function Form(){
                             <label className="text-white" htmlFor="password">Password: </label>
                         <input ref={passwordRef} data-testid='password' type="password" name="" id="password" className="text-black rounded focus:outline-none pl-2 pr-2 pt-1 pb-1" />
                     </div>
-                    <button disabled={request} className={`self-center bg-white text-orange-600 p-2 rounded ${request&&'text-red-500'}`}>{request?'Logging...':'Login'}</button>
+                    <button disabled={request} style={{color:'#0E594C'}} className={`self-center bg-white p-2 rounded ${request&&'text-red-500'}`}>{request?'Logging...':'Login'}</button>
                 </form>
                 {errorForm?<span className="font-bold text-red-600 bg-white rounded pl-1 pr-1" data-testid >{errorForm.message}</span>:(<span></span>)}
             </div>

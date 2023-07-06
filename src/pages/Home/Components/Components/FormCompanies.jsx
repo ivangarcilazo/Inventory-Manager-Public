@@ -15,9 +15,9 @@ export default function FormCompanies(props){
                     return(
                         <div className="flex gap-2" key={index}>
                             <label htmlFor="">{data.label}</label>
-                            <input ref={data?.ref} style={{borderBottom:'#ffa357 1px solid'}} className="rounded pl-1 pr-1 focus:outline-none" type="text" placeholder={data?.value?data.value:data.placeholder}/>
+                            <input ref={data?.ref} style={{borderBottom:'#0e594c 1px solid'}} className="rounded pl-1 pr-1 focus:outline-none" type="text" placeholder={data?.value?data.value:data.placeholder}/>
                         </div>
-                    )
+                    ) 
                 })
             }
             

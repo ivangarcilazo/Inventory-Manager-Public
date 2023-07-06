@@ -1,14 +1,14 @@
 import Form from "../../Components/Form/Form"
+import girl from '../../assets/loginGirl.png'
 
 export default function Login (){
     return(
-        <main style={{backgroundColor:'#FFA357'}} className="w-screen h-screen flex flex-col justify-center items-center" >
-           <Form /> 
-            <div className="flex items-start justify-center"> 
-                <div className="bg-slate-100 rounded w-4/6 mt-5">
-                    <img src="https://uploads-ssl.webflow.com/5ef9e7820240534a394d4b30/634dad4b9b56535c1555419b_Logo%20Imagine.webp" alt="" />
-                </div>
-            </div>
+        <main style={{backgroundColor:'#EAEAEA'}} className="w-screen h-screen flex flex-col justify-end items-center gap-5" >
+           <Form />
+           <div className='w-full h-2/6 flex justify-center items-start pl-6 pr-6 md:h-1/6 z-0'>
+            <img className='bottom-0 z-0 drop-shadow-xl left-0 absolute sm:w-1/2' src={girl} alt="" />
+            <span className='text-xl text-slate-600'>Keeps the inventories of the companies in a <span className='text-2xl font-semibold'>fast way.</span></span>
+           </div>
         </main>
     )
 }

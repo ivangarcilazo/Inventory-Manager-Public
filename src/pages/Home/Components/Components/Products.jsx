@@ -6,6 +6,8 @@
     import { useState } from 'react'
     import Modal from '../../../../Components/Modal/Modal'
     import DeleteButton from './DeleteButton'
+    import imageProduct from '../../../../assets/NO_IMAGE.jpg'
+
 
     export default function Products({data, nit, setNewUpdate, newUpdate, stateAuth}){
         const [ isOpened, setIsOpened ] = useState(false)
@@ -16,7 +18,7 @@
         return(
             <>
                 <div className=" lg:h-64 lg:w-64 w-44 h-64 shadow-xl border rounded flex flex-col items-center justify-center text-slate-600 p-5 gap-2">
-                    <img className='border rounded' width={100} src={'../../../../assets/NO_IMAGE.jpg'} alt="" />
+                    <img className='border rounded' width={100} src={imageProduct} alt="" />
                     <span>{data.productName}</span>
                     <div className='w-full flex'>
                         <div className='flex flex-col w-4/5'>
@@ -38,7 +40,7 @@
                 </div>
 
                 <Modal title={data.productName} isOpened={isOpened} setIsOpened={setIsOpened}>
-                    <img className='border rounded' width={100} src={'../../../../assets/NO_IMAGE.jpg'} alt="" />
+                    <img className='border rounded' width={100} src={imageProduct} alt="" />
                     <div className='flex flex-col text-slate-600 gap-2 justify-center items-start'>
                         <span>Price: ${data.productPrice}</span>
                         <span>Stock: {data.productQuantity}</span>

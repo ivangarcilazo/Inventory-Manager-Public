@@ -78,7 +78,7 @@ export default function Carrousel(){
            <ul className='flex gap-4'>
             {dataCarrousel.map((_,index)=>{
                 return(
-                    <li key={index} className='rounded-full w-3 h-3 ' style={item===index?{backgroundColor:'orange'}:{backgroundColor:'gray'}}></li>
+                    <li key={index} className='rounded-full w-3 h-3 ' style={item===index?{backgroundColor:'#0e594c'}:{backgroundColor:'gray'}}></li>
                 )
             })}
            </ul>
